@@ -65,6 +65,7 @@ class Lookway_Todo
         if ($screen->id === 'toplevel_page_' . LOOKWAY_TODO_MAIN_PAGE_SLUG) {
             // Enqueue styles
             wp_enqueue_style('lookway-todo-bootstrap', LOOKWAY_TODO_URL . '/libs/bootstrap/bootstrap.min.css');
+            wp_enqueue_style('lookway-todo-style', LOOKWAY_TODO_URL . '/assets/css/style.css');
 
             // Enqueue scripts
             wp_enqueue_script('lookway-todo-bootstrap', LOOKWAY_TODO_URL . '/libs/bootstrap/bootstrap.min.js', '', '', true);
