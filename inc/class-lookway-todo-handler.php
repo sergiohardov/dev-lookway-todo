@@ -35,7 +35,11 @@ class Lookway_Todo_Handler
 
             $result = Lookway_Todo_Controls::create_new_task($title, $desc);
 
-            echo $result;
+            if ($result > 0) {
+                echo Lookway_Todo_Template_Loader::get_template('task-card', $result);
+            } else {
+                echo 'Ошибка';
+            }
         }
 
         wp_die();
@@ -45,7 +49,10 @@ class Lookway_Todo_Handler
     {
         check_ajax_referer('_wpnonce', 'nonce');
         $result = Lookway_Todo_Controls::delete_all_task();
-        echo $result;
+
+        if ($result > 0) {
+            echo Lookway_Todo_Template_Loader::get_template('task-empty');
+        }
         wp_die();
     }
 }

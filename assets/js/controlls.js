@@ -6,6 +6,8 @@ jQuery(document).ready(function ($) {
   createBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
+    const taskEmpty = document.querySelector(".task-empty");
+
     $.ajax({
       url: todo_controlls_obj.ajaxurl,
       type: "post",
@@ -17,6 +19,12 @@ jQuery(document).ready(function ($) {
       },
       success: function (data) {
         console.log(data);
+        if (taskEmpty) {
+          taskEmpty.remove();
+        }
+        document
+          .querySelector(".lookway-todo__tasks")
+          .insertAdjacentHTML("afterbegin", data);
       },
       error: function (errorThrown) {
         console.log(errorThrown);
@@ -36,6 +44,10 @@ jQuery(document).ready(function ($) {
       },
       success: function (data) {
         console.log(data);
+        document.querySelector(".lookway-todo__tasks").innerHTML = "";
+        document
+          .querySelector(".lookway-todo__tasks")
+          .insertAdjacentHTML("afterbegin", data);
       },
       error: function (errorThrown) {
         console.log(errorThrown);

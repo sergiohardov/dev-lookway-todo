@@ -13,7 +13,7 @@ class Lookway_Todo_Controls
         $post_id = wp_insert_post($args);
 
         if ($post_id > 0) {
-            return true;
+            return $post_id;
         } else {
             return false;
         }
