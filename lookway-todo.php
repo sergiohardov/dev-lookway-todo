@@ -18,6 +18,9 @@ define('LOOKWAY_TODO_PATH', plugin_dir_path(__FILE__));
 define('LOOKWAY_TODO_URL', plugins_url('', __FILE__));
 define('LOOKWAY_TODO_MAIN_PAGE_SLUG', 'lookway_todo_plugin_main_page');
 
+// Classes
+require LOOKWAY_TODO_PATH . 'inc/class-lookway-todo-custom-post-types.php';
+
 // Main Class
 class Lookway_Todo
 {
