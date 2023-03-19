@@ -13,14 +13,20 @@
 
 if (!defined('ABSPATH')) die;
 
+// Defines
 define('LOOKWAY_TODO_PATH', plugin_dir_path(__FILE__));
+define('LOOKWAY_TODO_URL', plugins_url('', __FILE__));
 
+// Main Class
 class Lookway_Todo
 {
     public function __construct()
     {
         // Add link on plugin page in admin sidebar
         add_action('admin_menu', [$this, 'plugin_link_menu']);
+
+        // Enqueue styles & scripts
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_styles_scripts']);
     }
 
     static function activation()
@@ -49,6 +55,19 @@ class Lookway_Todo
             'dashicons-admin-plugins',
             100
         );
+    }
+
+    public function enqueue_styles_scripts()
+    {
+        $screen = get_current_screen();
+
+        if ($screen->id === 'toplevel_page_lookway_todo_plugin_main_page') {
+            // Enqueue styles
+            wp_enqueue_style('lookway-todo-bootstrap', LOOKWAY_TODO_URL . '/libs/bootstrap/bootstrap.min.css');
+
+            // Enqueue scripts
+            wp_enqueue_script('lookway-todo-bootstrap', LOOKWAY_TODO_URL . '/libs/bootstrap/bootstrap.min.js', '', '', true);
+        }
     }
 }
 
