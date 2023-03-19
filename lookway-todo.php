@@ -16,6 +16,7 @@ if (!defined('ABSPATH')) die;
 // Defines
 define('LOOKWAY_TODO_PATH', plugin_dir_path(__FILE__));
 define('LOOKWAY_TODO_URL', plugins_url('', __FILE__));
+define('LOOKWAY_TODO_MAIN_PAGE_SLUG', 'lookway_todo_plugin_main_page');
 
 // Main Class
 class Lookway_Todo
@@ -50,7 +51,7 @@ class Lookway_Todo
             esc_html__('Lookway ToDo Page', 'lookway-todo'),
             esc_html__('Lookway ToDo', 'lookway-todo'),
             'manage_options',
-            'lookway_todo_plugin_main_page',
+            LOOKWAY_TODO_MAIN_PAGE_SLUG,
             [$this, 'plugin_main_page'],
             'dashicons-admin-plugins',
             100
@@ -61,7 +62,7 @@ class Lookway_Todo
     {
         $screen = get_current_screen();
 
-        if ($screen->id === 'toplevel_page_lookway_todo_plugin_main_page') {
+        if ($screen->id === 'toplevel_page_' . LOOKWAY_TODO_MAIN_PAGE_SLUG) {
             // Enqueue styles
             wp_enqueue_style('lookway-todo-bootstrap', LOOKWAY_TODO_URL . '/libs/bootstrap/bootstrap.min.css');
 
